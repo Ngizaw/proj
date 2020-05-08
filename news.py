@@ -23,11 +23,7 @@ for source in sources:
        headline = []
        for article in top_headlines['articles']:
               headline.append(article['title'])
-
        headlines[abv[source]] = headline
-
-#print(headlines)
-
 
 list = []
 
@@ -36,16 +32,46 @@ src = ['WSJ','BBC','BB','AJ']
 for i in range(4):
        sources[i] = src[i]
 
-for source in sources:
-       if source == 'AJ':
-              tup = (random.sample(headlines[source],1),source)
-              list.append(tup)
-       else:
-              tup = (random.sample(headlines[source],random.randint(1,2)),source)
-              list.append(tup)
-j=1
-for tup in list:
-       for article in tup[0]:
-              print("{}. {} ({})".format(j,article,tup[1]))
-              j += 1
+hDict = dict()
+i = 1
+for source in src:
+    for hLine in headlines[source]:
+        tup = (hLine, source)
+        hDict[i] = (tup)
+        i += 1
 
+for j in hDict:
+    print(j,hDict[j][0], "({})".format(hDict[j][1]))
+
+art1, art2, art3, art4, art5 = input("Pick 5 articles: ").split()
+choices = [art1, art2, art3, art4, art5]
+
+j=1
+for choice in choices:
+    print("{}.".format(j), hDict[int(choice)][0], "({})".format(hDict[int(choice)][1]))
+    j+=1
+
+# # i = 1
+# #
+# # for tup in hLines:
+# #     hDict[i] = tup
+# #     #print (tup[0], tup[1])
+#
+# # for source in sources:
+# #     for article in headlines[source]:
+# #         tup = (article,source)
+# #         list.append(tup)
+# # print( list)
+# #
+# # for source in sources:
+# #        if source == 'AJ':
+# #               tup = (random.sample(headlines[source],1),source)
+# #               list.append(tup)
+# #        else:
+# #               tup = (random.sample(headlines[source],random.randint(1,2)),source)
+# #               list.append(tup)
+# j=1
+# for tup in list:
+#        for article in tup[0]:
+#               print("{}. {} ({})".format(j,article,tup[1]))
+#               j += 1
